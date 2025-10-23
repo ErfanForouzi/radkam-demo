@@ -1,14 +1,11 @@
-
 const form = document.querySelector("form");
 const rows = document.getElementById("rows");
 const columns = document.getElementById("columns");
 const submitButton = document.querySelector("form button");
 const tableContainer = document.getElementById("table-container");
 
-
 const isOdd = (num) => num % 2;
 const isGreaterThan = (num, minNum) => num > minNum;
-
 
 function allInputsFilled() {
   const inputs = document.querySelectorAll("table input");
@@ -17,13 +14,16 @@ function allInputsFilled() {
 }
 function sortEachRow() {
   const rows = document.querySelectorAll("table tbody tr");
-  rows.forEach((row,index) => {
+  rows.forEach((row, index) => {
     const inputs = row.querySelectorAll("input");
     const arrayInputs = [...inputs];
     const allFilled = arrayInputs.every((inp) => inp.value.trim() !== "");
     if (allFilled) {
-      const numbers = arrayInputs.map((inp) => Number(inp.value))
-      const sorted = index %2 ?  numbers.sort((a, b) => b - a) :  numbers.sort((a, b) => a - b)
+      const numbers = arrayInputs.map((inp) => Number(inp.value));
+      const sorted =
+        index % 2
+          ? numbers.sort((a, b) => b - a)
+          : numbers.sort((a, b) => a - b);
       arrayInputs.forEach((inp, i) => (inp.value = sorted[i]));
     }
   });
