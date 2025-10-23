@@ -17,14 +17,13 @@ function allInputsFilled() {
 }
 function sortEachRow() {
   const rows = document.querySelectorAll("table tbody tr");
-  rows.forEach((row) => {
+  rows.forEach((row,index) => {
     const inputs = row.querySelectorAll("input");
     const arrayInputs = [...inputs];
     const allFilled = arrayInputs.every((inp) => inp.value.trim() !== "");
     if (allFilled) {
-      const sorted = arrayInputs
-        .map((inp) => Number(inp.value))
-        .sort((a, b) => a - b);
+      const numbers = arrayInputs.map((inp) => Number(inp.value))
+      const sorted = index %2 ?  numbers.sort((a, b) => b - a) :  numbers.sort((a, b) => a - b)
       arrayInputs.forEach((inp, i) => (inp.value = sorted[i]));
     }
   });
